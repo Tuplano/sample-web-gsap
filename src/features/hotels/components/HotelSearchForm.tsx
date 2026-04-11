@@ -30,35 +30,35 @@ export function HotelSearchForm({ filters, onChange }: HotelSearchFormProps) {
   }
 
   return (
-    <section className="panel">
-      <h2 className="section-title">Search stays</h2>
-      <div className="form-grid">
-        <label className="field">
-          <span>Destination</span>
+    <section className="border-y border-[var(--line)] py-6">
+      <h2 className="text-xl font-semibold text-[var(--text)]">Search stays</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Destination</span>
           <input
             value={filters.destination}
             onChange={(event) => updateField('destination', event.target.value)}
             placeholder="City or area"
           />
         </label>
-        <label className="field">
-          <span>Check-in</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Check-in</span>
           <input
             type="date"
             value={filters.checkIn}
             onChange={(event) => updateField('checkIn', event.target.value)}
           />
         </label>
-        <label className="field">
-          <span>Check-out</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Check-out</span>
           <input
             type="date"
             value={filters.checkOut}
             onChange={(event) => updateField('checkOut', event.target.value)}
           />
         </label>
-        <label className="field">
-          <span>Guests</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Guests</span>
           <input
             type="number"
             min={1}
@@ -67,8 +67,8 @@ export function HotelSearchForm({ filters, onChange }: HotelSearchFormProps) {
             onChange={(event) => onNumberChange('guests', event)}
           />
         </label>
-        <label className="field">
-          <span>Rooms</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Rooms</span>
           <input
             type="number"
             min={1}

@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { CalendarDays, Compass, Hotel, Info } from 'lucide-react'
 
 import { useAuthStore } from '@/stores/auth'
 
@@ -26,14 +27,28 @@ export default function Header() {
           Harborline Hotels
         </Link>
         <nav className="main-nav" aria-label="Main navigation">
-          <Link to="/" activeProps={{ className: 'active' }}>
+          <a href="/#overview">
+            <Compass size={14} aria-hidden="true" />
+            Overview
+          </a>
+          <a href="/#collections">
+            <Hotel size={14} aria-hidden="true" />
             Stays
-          </Link>
+          </a>
+          <a href="/#booking">
+            <CalendarDays size={14} aria-hidden="true" />
+            Booking
+          </a>
           <Link to="/about" activeProps={{ className: 'active' }}>
+            <Info size={14} aria-hidden="true" />
             Template notes
           </Link>
         </nav>
-        <button type="button" className="session-btn" onClick={handleSessionToggle}>
+        <button
+          type="button"
+          className="session-btn"
+          onClick={handleSessionToggle}
+        >
           {user ? 'Sign out' : 'Demo sign in'}
         </button>
       </div>

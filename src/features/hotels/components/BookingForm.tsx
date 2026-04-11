@@ -64,11 +64,11 @@ export function BookingForm({
   }
 
   return (
-    <section className="panel">
-      <h2 className="section-title">Book now</h2>
-      <form className="booking-grid" onSubmit={handleSubmit}>
-        <label className="field">
-          <span>Hotel</span>
+    <section className="border border-[var(--line)] bg-white p-4">
+      <h2 className="text-lg font-semibold text-[var(--text)]">Book now</h2>
+      <form className="mt-3 grid gap-3" onSubmit={handleSubmit}>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Hotel</span>
           <select
             value={formValues.hotelId}
             onChange={(event) =>
@@ -83,8 +83,8 @@ export function BookingForm({
           </select>
         </label>
 
-        <label className="field">
-          <span>Full name</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Full name</span>
           <input
             value={formValues.fullName}
             onChange={(event) =>
@@ -93,8 +93,8 @@ export function BookingForm({
           />
         </label>
 
-        <label className="field">
-          <span>Email</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Email</span>
           <input
             type="email"
             value={formValues.email}
@@ -104,8 +104,8 @@ export function BookingForm({
           />
         </label>
 
-        <label className="field">
-          <span>Phone</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Phone</span>
           <input
             value={formValues.phone}
             onChange={(event) =>
@@ -114,8 +114,8 @@ export function BookingForm({
           />
         </label>
 
-        <label className="field">
-          <span>Special request</span>
+        <label className="grid gap-1">
+          <span className="text-sm font-medium text-[var(--text)]">Special request</span>
           <textarea
             rows={3}
             value={formValues.specialRequest}
@@ -128,7 +128,7 @@ export function BookingForm({
           />
         </label>
 
-        {error ? <p className="error-text">{error}</p> : null}
+        {error ? <p className="text-sm text-red-700">{error}</p> : null}
 
         <button type="submit" disabled={isDisabled}>
           {isSubmitting ? 'Submitting booking...' : 'Confirm booking'}
