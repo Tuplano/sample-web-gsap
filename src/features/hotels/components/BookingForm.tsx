@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
+import { CalendarDays, CreditCard, Mail, Phone, User } from 'lucide-react'
 
 import { bookingSchema } from '@/schemas/booking'
 import type { BookingFormValues } from '@/schemas/booking'
@@ -12,7 +13,7 @@ interface BookingFormProps {
 }
 
 /**
- * Booking form used as a baseline for future integrations.
+ * Booking form refined with high-end inputs and clear visual hierarchy.
  */
 export function BookingForm({
   hotels,
@@ -64,12 +65,17 @@ export function BookingForm({
   }
 
   return (
-    <section className="border border-[var(--line)] bg-white p-4">
-      <h2 className="text-lg font-semibold text-[var(--text)]">Book now</h2>
-      <form className="mt-3 grid gap-3" onSubmit={handleSubmit}>
-        <label className="grid gap-1">
-          <span className="text-sm font-medium text-[var(--text)]">Hotel</span>
+    <section className="rounded-2xl border border-[var(--line-strong)] bg-white p-8 shadow-xl">
+      <div className="mb-6 flex items-center gap-2 text-sm font-bold text-[var(--text)] uppercase tracking-wider">
+        <CreditCard size={16} />
+        Complete Reservation
+      </div>
+      
+      <form className="grid gap-6" onSubmit={handleSubmit}>
+        <div className="grid gap-2">
+          <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Select Property</label>
           <select
+            className="w-full rounded-xl border border-[var(--line-strong)] bg-white px-4 py-3 text-sm transition-all focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
             value={formValues.hotelId}
             onChange={(event) =>
               setFormValues((prev) => ({ ...prev, hotelId: event.target.value }))
@@ -81,43 +87,71 @@ export function BookingForm({
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
-        <label className="grid gap-1">
-          <span className="text-sm font-medium text-[var(--text)]">Full name</span>
-          <input
-            value={formValues.fullName}
-            onChange={(event) =>
-              setFormValues((prev) => ({ ...prev, fullName: event.target.value }))
-            }
-          />
-        </label>
+        <div className="grid gap-2">
+          <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Full Name</label>
+          <div className="relative">
+            <User className="absolute top-1/2 left-4 -translate-y-1/2 text-[var(--text-muted)] opacity-50" size={16} />
+            <input
+              className="w-full rounded-xl border border-[var(--line-strong)] bg-white pl-12 pr-4 py-3 text-sm transition-all focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
+              placeholder="John Doe"
+              value={formValues.fullName}
+              onChange={(event) =>
+                setFormValues((prev) => ({ ...prev, fullName: event.target.value }))
+              }
+            />
+          </div>
+        </div>
 
-        <label className="grid gap-1">
-          <span className="text-sm font-medium text-[var(--text)]">Email</span>
-          <input
-            type="email"
-            value={formValues.email}
-            onChange={(event) =>
-              setFormValues((prev) => ({ ...prev, email: event.target.value }))
-            }
-          />
-        </label>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-2">
+            <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Email</label>
+            <div className="relative">
+              <Mail className="absolute top-1/2 left-4 -translate-y-1/2 text-[var(--text-muted)] opacity-50" size={16} />
+              <input
+                type="email"
+                className="w-full rounded-xl border border-[var(--line-strong)] bg-white pl-12 pr-4 py-3 text-sm transition-all focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
+                placeholder="john@example.com"
+                value={formValues.email}
+                onChange={(event) =>
+                  setFormValues((prev) => ({ ...prev, email: event.target.value }))
+                }
+              />
+            </div>
+          </div>
 
-        <label className="grid gap-1">
-          <span className="text-sm font-medium text-[var(--text)]">Phone</span>
-          <input
-            value={formValues.phone}
-            onChange={(event) =>
-              setFormValues((prev) => ({ ...prev, phone: event.target.value }))
-            }
-          />
-        </label>
+          <div className="grid gap-2">
+            <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Phone</label>
+            <div className="relative">
+              <Phone className="absolute top-1/2 left-4 -translate-y-1/2 text-[var(--text-muted)] opacity-50" size={16} />
+              <input
+                className="w-full rounded-xl border border-[var(--line-strong)] bg-white pl-12 pr-4 py-3 text-sm transition-all focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
+                placeholder="+1 234 567 890"
+                value={formValues.phone}
+                onChange={(event) =>
+                  setFormValues((prev) => ({ ...prev, phone: event.target.value }))
+                }
+              />
+            </div>
+          </div>
+        </div>
 
-        <label className="grid gap-1">
-          <span className="text-sm font-medium text-[var(--text)]">Special request</span>
+        <div className="grid gap-2">
+          <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Check-in / Check-out</label>
+          <div className="flex items-center gap-2 rounded-xl border border-[var(--line-strong)] bg-[var(--surface-alt)] px-4 py-3 text-sm text-[var(--text-muted)]">
+            <CalendarDays size={16} className="opacity-50" />
+            <span>{formValues.checkIn} — {formValues.checkOut}</span>
+            <span className="ml-auto text-[10px] font-black">{formValues.guests} Guests</span>
+          </div>
+        </div>
+
+        <div className="grid gap-2">
+          <label className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wide">Special Requests</label>
           <textarea
+            className="w-full rounded-xl border border-[var(--line-strong)] bg-white px-4 py-3 text-sm transition-all focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
             rows={3}
+            placeholder="Dietary requirements, accessibility aids, or quiet rooms..."
             value={formValues.specialRequest}
             onChange={(event) =>
               setFormValues((prev) => ({
@@ -126,12 +160,16 @@ export function BookingForm({
               }))
             }
           />
-        </label>
+        </div>
 
-        {error ? <p className="text-sm text-red-700">{error}</p> : null}
+        {error && <p className="text-sm font-medium text-red-600">{error}</p>}
 
-        <button type="submit" disabled={isDisabled}>
-          {isSubmitting ? 'Submitting booking...' : 'Confirm booking'}
+        <button 
+          type="submit" 
+          disabled={isDisabled}
+          className="mt-2 w-full rounded-full bg-[var(--accent)] py-4 font-bold text-white shadow-lg shadow-[var(--accent)]/20 transition-all hover:brightness-110 active:scale-[0.98] disabled:opacity-50 disabled:grayscale"
+        >
+          {isSubmitting ? 'Securing your stay...' : 'Complete Reservation'}
         </button>
       </form>
     </section>

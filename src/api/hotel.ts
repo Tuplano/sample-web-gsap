@@ -22,7 +22,7 @@ const MOCK_HOTELS: Hotel[] = [
     description:
       'Central business district property with fast check-in, rooftop breakfast, and airport transfer desk.',
     heroImageUrl:
-      'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80',
     amenities: [
       { id: 'wifi', label: 'Wi-Fi' },
       { id: 'breakfast', label: 'Breakfast' },
@@ -40,7 +40,7 @@ const MOCK_HOTELS: Hotel[] = [
     description:
       'Apartment-style suites for longer stays, with meeting room access and all-day concierge.',
     heroImageUrl:
-      'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
     amenities: [
       { id: 'kitchenette', label: 'Kitchenette' },
       { id: 'parking', label: 'Parking' },
@@ -58,7 +58,7 @@ const MOCK_HOTELS: Hotel[] = [
     description:
       'Quiet hillside property with family rooms, evening lounge service, and pool deck.',
     heroImageUrl:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
     amenities: [
       { id: 'pool', label: 'Pool' },
       { id: 'family', label: 'Family Rooms' },
