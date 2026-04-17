@@ -5,16 +5,16 @@ export default function Footer() {
     <footer className="w-full">
       {/* Social Tier - Warm Muted Stone */}
       <section className="bg-secondary py-16">
-        <div className="page-wrap flex flex-col items-center justify-between gap-8 md:flex-row">
-          <div className="flex gap-6">
+        <div className="page-wrap relative flex flex-col items-center gap-8 md:flex-row md:gap-0">
+          <div className="flex gap-6 md:flex-1 md:justify-start">
             <Instagram size={20} className="text-primary hover:opacity-70 cursor-pointer transition-opacity" />
             <Facebook size={20} className="text-primary hover:opacity-70 cursor-pointer transition-opacity" />
             <Twitter size={20} className="text-primary hover:opacity-70 cursor-pointer transition-opacity" />
           </div>
-          <div className="text-2xl font-serif italic text-primary tracking-[0.2em]">
+          <div className="text-2xl font-serif italic text-primary tracking-[0.2em] md:absolute md:left-1/2 md:-translate-x-1/2">
             Harborline
           </div>
-          <div className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+          <div className="font-sans text-[10px] font-bold uppercase tracking-[0.2em] text-primary md:flex-1 md:text-right">
             Explore the Sanctuary
           </div>
         </div>
@@ -22,7 +22,7 @@ export default function Footer() {
 
       {/* Navigation Tier - Deep Earthy Dark */}
       <section className="bg-foreground py-24 text-background/50">
-        <div className="page-wrap grid grid-cols-2 gap-12 sm:grid-cols-4 lg:grid-cols-5">
+        <div className="page-wrap grid grid-cols-2 gap-12 sm:grid-cols-4 lg:grid-cols-4">
           <div className="col-span-2 lg:col-span-1">
             <h4 className="mb-6 font-serif text-lg italic text-background">Harborline</h4>
             <p className="max-w-[20ch] text-[11px] leading-relaxed">
@@ -55,15 +55,6 @@ export default function Footer() {
               <li><a href="#" className="hover:text-background transition-colors">Terms</a></li>
               <li><a href="#" className="hover:text-background transition-colors">Cookies</a></li>
             </ul>
-          </div>
-
-          <div className="col-span-2 flex items-center justify-end lg:col-span-1">
-            <div className="h-16 w-16 opacity-10 filter grayscale invert brightness-200">
-              <svg viewBox="0 0 100 100" className="fill-current">
-                 <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="1" fill="none" />
-                 <text x="50" y="55" fontSize="30" textAnchor="middle" fontFamily="serif" fontStyle="italic">HN</text>
-              </svg>
-            </div>
           </div>
         </div>
         
