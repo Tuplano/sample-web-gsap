@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 
 import { bookingSchema } from '@/schemas/booking'
@@ -34,18 +34,11 @@ export function useHotelSearch() {
     },
   })
 
-  const selectedHotel = useMemo(() => {
-    const firstHotel = hotelsQuery.data?.[0]
-
-    return firstHotel ?? null
-  }, [hotelsQuery.data])
-
   return {
     filters,
     setFilters,
     hotelsQuery,
     availabilityMutation,
     bookingMutation,
-    selectedHotel,
   }
 }

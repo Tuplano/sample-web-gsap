@@ -11,7 +11,8 @@ import {
   useHeroPremiere, 
   useEditorialAnimation, 
   useSmoothScroll, 
-  useCardSwapping 
+  useCardSwapping,
+  useInteractiveShowcase,
 } from '@/hooks/useGsapAnimations'
 
 /**
@@ -24,17 +25,21 @@ export function HotelsHomePage() {
     setFilters,
     hotelsQuery,
     availabilityMutation,
-    selectedHotel,
   } = useHotelSearch()
 
   useSmoothScroll() // Initialize momentum scrolling
   const { containerRef } = useEditorialAnimation()
-  const { heroRef, titleRef, imageRef } = useHeroPremiere()
+  const { heroRef, titleRef, imageRef, contentRef: heroContentRef, overlayRef } = useHeroPremiere()
   const { 
     containerRef: mosaicContainerRef, 
     img1Ref: mosaicImg1Ref, 
     img2Ref: mosaicImg2Ref 
   } = useCardSwapping()
+  const {
+    sectionRef: showcaseRef,
+    imageRef: showcaseImageRef,
+    contentRef: showcaseContentRef,
+  } = useInteractiveShowcase()
 
   const hotels = useMemo(() => hotelsQuery.data ?? [], [hotelsQuery.data])
 
@@ -46,14 +51,14 @@ export function HotelsHomePage() {
     <main ref={containerRef} className="flex flex-col gap-0 bg-[var(--bg)]">
       {/* 1. Hero Section */}
       <section ref={heroRef} className="hero-editorial relative flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/20 z-10 transition-opacity duration-1000 group-hover:bg-black/15"></div>
+        <div ref={overlayRef} className="absolute inset-0 z-10 bg-black/20 transition-opacity duration-1000 group-hover:bg-black/15"></div>
         <img
           ref={imageRef}
           src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2400&q=90"
           alt="Luxury living space"
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="relative z-20 text-center text-white">
+        <div ref={heroContentRef} className="relative z-20 text-center text-white will-change-transform">
           <div className="page-wrap">
             <span className="hero-subtext mb-5 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] uppercase opacity-90">
               <MapPin className="size-3.5" />
@@ -111,14 +116,15 @@ export function HotelsHomePage() {
       />
 
       {/* 5. Feature Hero - Mid-roll immersive */}
-      <section className="group relative h-[65vh] w-full overflow-hidden sm:h-[72vh]">
+      <section ref={showcaseRef} className="group relative h-[65vh] w-full overflow-hidden sm:h-[72vh]">
         <div className="absolute inset-0 bg-black/10 z-10"></div>
         <img
+          ref={showcaseImageRef}
           src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=90"
           alt="Sunset dining room"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-[3000ms] group-hover:scale-105"
         />
-        <div className="absolute inset-0 z-20 flex items-center justify-center text-center text-white">
+        <div ref={showcaseContentRef} className="absolute inset-0 z-20 flex items-center justify-center text-center text-white will-change-transform">
           <div className="page-wrap">
             <h2 className="editorial-title text-5xl text-white sm:text-7xl">Epicurean Journeys</h2>
             <p className="mx-auto mt-4 max-w-xl text-[11px] font-medium uppercase tracking-[0.18em] text-white/85">Bespoke dining under the canopy of the stars.</p>
@@ -146,15 +152,15 @@ export function HotelsHomePage() {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             
             {/* Stacking Card Deck */}
-            <div className="group relative h-[420px] w-full sm:h-[560px]">
-              <div ref={mosaicImg1Ref} className="absolute inset-0 z-20 aspect-square overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-left">
+            <div className="group relative h-[420px] w-full touch-pan-y sm:h-[560px]">
+              <div ref={mosaicImg1Ref} className="absolute inset-0 z-20 aspect-square overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-left will-change-transform">
                 <img 
                   src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1000&q=80" 
                   className="h-full w-full object-cover grayscale-[0.2] transition-all duration-700" 
                   alt="Modern luxury dining"
                 />
               </div>
-              <div ref={mosaicImg2Ref} className="absolute inset-0 z-10 aspect-square translate-x-6 translate-y-6 scale-95 overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-right sm:translate-x-10 sm:translate-y-10">
+              <div ref={mosaicImg2Ref} className="absolute inset-0 z-10 aspect-square translate-x-6 translate-y-6 scale-95 overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-right will-change-transform sm:translate-x-10 sm:translate-y-10">
                 <img 
                   src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80" 
                   className="h-full w-full object-cover grayscale-[0.2] transition-all duration-700" 
@@ -313,7 +319,6 @@ export function HotelsHomePage() {
                 hotel={hotel}
                 onCheckAvailability={handleCheckAvailability}
                 isLoadingAvailability={availabilityMutation.isPending}
-                isSelected={hotel.id === selectedHotel?.id}
               />
             ))}
           </div>

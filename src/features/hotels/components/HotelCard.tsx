@@ -9,7 +9,6 @@ interface HotelCardProps {
   hotel: Hotel
   onCheckAvailability: (hotelId: string) => void
   isLoadingAvailability: boolean
-  isSelected: boolean
 }
 
 /**
@@ -19,7 +18,6 @@ export function HotelCard({
   hotel,
   onCheckAvailability,
   isLoadingAvailability,
-  isSelected,
 }: HotelCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
 
@@ -54,11 +52,6 @@ export function HotelCard({
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
         />
-        {isSelected && (
-          <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/92 px-4 py-3 text-left backdrop-blur-sm animate-in fade-in slide-in-from-bottom-2">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">Current Selection</span>
-          </div>
-        )}
       </div>
       
       <div className="mt-5 space-y-4">

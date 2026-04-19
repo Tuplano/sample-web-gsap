@@ -52,7 +52,7 @@ export function EditorialSection({
         <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)] lg:gap-16">
           
           {/* Content Container - Sticky for scroll stability */}
-          <div className={`lg:sticky lg:top-28 flex flex-col gap-8 ${!isLeft ? 'lg:order-last' : ''}`}>
+          <div className={`flex flex-col gap-8 ${!isLeft ? 'lg:order-last' : ''}`}>
             <div className="max-w-md">
               {label && <span className="editorial-label reveal-text">{label}</span>}
               <div className="reveal-text space-y-5">
