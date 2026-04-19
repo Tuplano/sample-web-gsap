@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "@fontsource-variable/geist";
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -36,8 +36,8 @@
   --sidebar-accent-foreground: oklch(0.3760 0.0225 64.3434);
   --sidebar-border: oklch(0.8606 0.0321 84.5881);
   --sidebar-ring: oklch(0.6180 0.0778 65.5444);
-  --font-sans: Libre Baskerville, serif;
-  --font-serif: Lora, serif;
+  --font-sans: "Geist Variable", "Geist", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
   --font-mono: IBM Plex Mono, monospace;
   --radius: 0.25rem;
   --shadow-x: 2px;
@@ -91,8 +91,8 @@
   --sidebar-accent-foreground: oklch(0.9239 0.0190 83.0636);
   --sidebar-border: oklch(0.3795 0.0181 57.1280);
   --sidebar-ring: oklch(0.7264 0.0581 66.6967);
-  --font-sans: Libre Baskerville, serif;
-  --font-serif: Lora, serif;
+  --font-sans: "Geist Variable", "Geist", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
   --font-mono: IBM Plex Mono, monospace;
   --radius: 0.25rem;
   --shadow-x: 2px;
@@ -172,6 +172,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
   }
 }
 
@@ -195,43 +196,49 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .page-wrap {
-  width: min(1440px, calc(100% - 4rem));
+  width: min(1240px, calc(100% - 2rem));
   margin: 0 auto;
 }
 
 .editorial-container {
-  padding: 10rem 0;
+  padding: 6rem 0;
 }
 
 @media (min-width: 1536px) {
   .editorial-container {
-    padding: 14rem 0;
+    padding: 7.5rem 0;
+  }
+}
+
+@media (min-width: 640px) {
+  .page-wrap {
+    width: min(1240px, calc(100% - 3rem));
   }
 }
 
 .editorial-title {
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  line-height: 1;
-  margin-bottom: 2.5rem;
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
   font-family: var(--font-serif-luxury);
   font-style: italic;
 }
 
 .editorial-copy {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 1.1vw, 1.125rem);
   line-height: 1.8;
   color: var(--text-muted);
-  max-width: 48ch;
+  max-width: 44ch;
 }
 
 .editorial-label {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.3em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--primary);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   display: block;
 }
 
@@ -249,43 +256,23 @@ h1, h2, h3, h4, .font-serif {
   filter: brightness(0.9);
 }
 
-/* Luxury Form Elements */
-input, select, textarea {
+/* Scoped editorial form elements so Shadcn controls keep their defaults. */
+input:not([data-slot]), select:not([data-slot]), textarea:not([data-slot]) {
   background: transparent;
   border: none;
   border-bottom: 0.5px solid var(--border);
   border-radius: 0;
-  padding: 1rem 0;
+  padding: 0.875rem 0;
   font-family: var(--font-serif-luxury);
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-input::placeholder {
+input:not([data-slot])::placeholder {
   opacity: 0.3;
 }
 
-input:focus, select:focus {
+input:not([data-slot]):focus, select:not([data-slot]):focus {
   outline: none;
   border-bottom-color: var(--foreground);
-}
-
-button {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 1.25rem 3rem;
-  border: 1px solid var(--foreground);
-  background: var(--foreground);
-  color: var(--background);
-  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-  cursor: pointer;
-}
-
-button:hover {
-  background: transparent;
-  color: var(--foreground);
-  transform: translateY(-1px);
 }

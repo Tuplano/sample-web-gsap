@@ -1,5 +1,8 @@
 import { useRef } from 'react'
+import { ArrowUpRight, MapPin, Star } from 'lucide-react'
 import { gsap } from 'gsap'
+
+import { Button } from '@/components/ui/button'
 import type { Hotel } from '@/types/hotel'
 
 interface HotelCardProps {
@@ -39,12 +42,12 @@ export function HotelCard({
   return (
     <article
       ref={cardRef}
-      className={`group cursor-pointer transition-all duration-500 reveal-text`}
+      className="group cursor-pointer reveal-text transition-all duration-500"
       onClick={() => onCheckAvailability(hotel.id)}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-neutral-100">
         <img
           src={hotel.heroImageUrl}
           alt={hotel.name}
@@ -52,32 +55,53 @@ export function HotelCard({
           className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
         />
         {isSelected && (
-          <div className="absolute inset-x-0 bottom-0 bg-white/90 p-3 text-center backdrop-blur-sm animate-in fade-in slide-in-from-bottom-2">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">Current Selection</span>
+          <div className="absolute inset-x-4 bottom-4 rounded-xl bg-white/92 px-4 py-3 text-left backdrop-blur-sm animate-in fade-in slide-in-from-bottom-2">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">Current Selection</span>
           </div>
         )}
       </div>
       
-      <div className="mt-6 flex flex-col gap-2">
-        <div className="flex items-end justify-between">
-          <h3 className="text-2xl font-serif italic text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-            {hotel.name}
-          </h3>
-          <span className="text-xs font-medium text-[var(--text-muted)] opacity-50 uppercase tracking-widest">
-            {hotel.pricePerNight}$
-          </span>
+      <div className="mt-5 space-y-4">
+        <div className="space-y-2">
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="text-[1.75rem] leading-none font-serif italic text-[var(--text)] transition-colors group-hover:text-primary">
+              {hotel.name}
+            </h3>
+            <span className="pt-1 text-sm font-semibold tracking-[0.04em] text-foreground/64">
+              ${hotel.pricePerNight}
+              <span className="ml-1 text-xs font-medium text-muted-foreground">night</span>
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+            <span className="flex items-center gap-1.5">
+              <MapPin className="size-4 text-primary/80" />
+              {hotel.location}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Star className="size-4 fill-primary/25 text-primary/80" />
+              {hotel.rating} rating
+            </span>
+          </div>
         </div>
         
-        <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
-          {hotel.location} • {hotel.rating} Rating
+        <p className="max-w-[34ch] text-sm leading-6 text-muted-foreground">
+          {hotel.description}
         </p>
 
-        <button 
-          className="mt-4 w-fit border-none bg-transparent p-0 text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--text)] hover:text-[var(--accent)] active:translate-y-0.5 transition-all"
-          disabled={isLoadingAvailability}
-        >
-          {isLoadingAvailability ? 'Searching...' : 'Check Sanctuary'}
-        </button>
+        <div className="flex items-center justify-between gap-4 border-t border-border/80 pt-4">
+          <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+            {hotel.reviewCount} verified reviews
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-9 rounded-full px-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground hover:bg-transparent hover:text-primary"
+            disabled={isLoadingAvailability}
+          >
+            {isLoadingAvailability ? 'Searching...' : 'Check stay'}
+            <ArrowUpRight className="size-4" />
+          </Button>
+        </div>
       </div>
     </article>
   )

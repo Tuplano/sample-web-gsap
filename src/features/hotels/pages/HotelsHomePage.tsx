@@ -1,6 +1,9 @@
 import { useMemo } from 'react'
-import { Search } from 'lucide-react'
+import { BedDouble, CalendarDays, MapPin, Search, Users } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { EditorialSection } from '@/features/hotels/components/EditorialSection'
 import { HotelCard } from '@/features/hotels/components/HotelCard'
 import { useHotelSearch } from '@/features/hotels/hooks/useHotelSearch'
@@ -52,9 +55,14 @@ export function HotelsHomePage() {
         />
         <div className="relative z-20 text-center text-white">
           <div className="page-wrap">
-            <span className="hero-subtext mb-6 block text-[10px] font-bold tracking-[0.4em] uppercase opacity-90">Est. 1994</span>
-            <h1 ref={titleRef} className="editorial-title font-serif italic text-white mb-0 text-7xl sm:text-8xl md:text-9xl leading-none">The Experience</h1>
-            <p className="hero-subtext mx-auto mt-8 max-w-xl text-lg font-light tracking-wide opacity-90 leading-relaxed">
+            <span className="hero-subtext mb-5 inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] uppercase opacity-90">
+              <MapPin className="size-3.5" />
+              Est. 1994
+            </span>
+            <h1 ref={titleRef} className="editorial-title mb-0 text-white text-[3.75rem] sm:text-[5.5rem] md:text-[7rem]">
+              The Experience
+            </h1>
+            <p className="hero-subtext mx-auto mt-6 max-w-2xl text-base font-normal leading-7 tracking-[0.01em] text-white/88 sm:text-lg">
               A sanctuary for the discerning soul, where every detail is a dialogue between architecture and nature.
             </p>
           </div>
@@ -66,7 +74,7 @@ export function HotelsHomePage() {
         layout="centered"
         title=""
         description={
-          <span className="text-3xl font-serif italic text-[var(--text)] sm:text-4xl text-balance">
+          <span className="text-balance text-2xl font-serif italic leading-tight text-[var(--text)] sm:text-[2.75rem]">
             "A collection of destinations built for the discerning traveler. 
             Where luxury meets the whispers of the wild, and every stay 
             is a curated chapter in your story."
@@ -103,7 +111,7 @@ export function HotelsHomePage() {
       />
 
       {/* 5. Feature Hero - Mid-roll immersive */}
-      <section className="relative h-[80vh] w-full overflow-hidden group">
+      <section className="group relative h-[65vh] w-full overflow-hidden sm:h-[72vh]">
         <div className="absolute inset-0 bg-black/10 z-10"></div>
         <img
           src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=2000&q=90"
@@ -112,8 +120,8 @@ export function HotelsHomePage() {
         />
         <div className="absolute inset-0 z-20 flex items-center justify-center text-center text-white">
           <div className="page-wrap">
-            <h2 className="editorial-title italic text-6xl md:text-8xl">Epicurean Journeys</h2>
-            <p className="mx-auto mt-6 max-w-xl text-[10px] font-bold tracking-[0.4em] opacity-90 uppercase">Bespoke dining under the canopy of the stars.</p>
+            <h2 className="editorial-title text-5xl text-white sm:text-7xl">Epicurean Journeys</h2>
+            <p className="mx-auto mt-4 max-w-xl text-[11px] font-medium uppercase tracking-[0.18em] text-white/85">Bespoke dining under the canopy of the stars.</p>
           </div>
         </div>
       </section>
@@ -133,20 +141,20 @@ export function HotelsHomePage() {
       />
 
       {/* 7. Experience Collage Mosaic */}
-      <section ref={mosaicContainerRef} className="editorial-container bg-secondary/10 stagger-item py-48 overflow-visible">
+      <section ref={mosaicContainerRef} className="editorial-container stagger-item overflow-visible bg-secondary/10 py-20 sm:py-24">
         <div className="page-wrap">
-          <div className="grid gap-16 lg:grid-cols-2 items-center">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             
             {/* Stacking Card Deck */}
-            <div className="relative h-[600px] w-full group">
-              <div ref={mosaicImg1Ref} className="absolute inset-0 aspect-square overflow-hidden bg-secondary/5 shadow-2xl z-20 origin-bottom-left">
+            <div className="group relative h-[420px] w-full sm:h-[560px]">
+              <div ref={mosaicImg1Ref} className="absolute inset-0 z-20 aspect-square overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-left">
                 <img 
                   src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1000&q=80" 
                   className="h-full w-full object-cover grayscale-[0.2] transition-all duration-700" 
                   alt="Modern luxury dining"
                 />
               </div>
-              <div ref={mosaicImg2Ref} className="absolute inset-0 aspect-square overflow-hidden bg-secondary/5 shadow-2xl z-10 translate-x-12 translate-y-12 scale-95 origin-bottom-right">
+              <div ref={mosaicImg2Ref} className="absolute inset-0 z-10 aspect-square translate-x-6 translate-y-6 scale-95 overflow-hidden rounded-[1.75rem] bg-secondary/5 shadow-xl origin-bottom-right sm:translate-x-10 sm:translate-y-10">
                 <img 
                   src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1000&q=80" 
                   className="h-full w-full object-cover grayscale-[0.2] transition-all duration-700" 
@@ -156,17 +164,18 @@ export function HotelsHomePage() {
             </div>
 
             {/* Anchored Portfolio Text - Ensured visibility with z-30 */}
-            <div className="relative z-30 flex flex-col justify-center item reveal-text lg:pl-20 items-start text-left bg-background/80 lg:bg-transparent backdrop-blur-sm lg:backdrop-blur-none p-8 lg:p-0 rounded-2xl lg:rounded-none">
+            <div className="item reveal-text relative z-30 flex flex-col items-start justify-center rounded-2xl bg-background/88 p-6 text-left backdrop-blur-sm lg:rounded-none lg:bg-transparent lg:p-0 lg:pl-14 lg:backdrop-blur-none">
               <span className="editorial-label">The Portfolio</span>
-              <h2 className="editorial-title italic text-foreground tracking-tight">Places that linger in memory.</h2>
-              <p className="editorial-copy mt-8 text-foreground/70 leading-relaxed max-w-sm">
+              <h2 className="editorial-title tracking-tight text-foreground">Places that linger in memory.</h2>
+              <p className="editorial-copy max-w-md text-foreground/72">
                 Our properties are more than just hotels; they are anchors for 
                 lifelong memories, designed to blend seamlessly with their 
                 local heritage and the rhythms of the wild.
               </p>
-              <div className="mt-12 flex h-10 w-10 items-center justify-center rounded-full border border-primary text-primary hover:bg-primary hover:text-white transition-all cursor-pointer">
-                <Search size={14} />
-              </div>
+              <Button variant="outline" size="lg" className="mt-8 h-11 rounded-full px-5 text-[11px] font-semibold uppercase tracking-[0.16em]">
+                Explore the portfolio
+                <Search className="size-4" />
+              </Button>
             </div>
 
           </div>
@@ -202,52 +211,102 @@ export function HotelsHomePage() {
       />
 
       {/* 10. Integrated Booking Bar */}
-      <section id="booking" className="border-t border-[var(--line-strong)] bg-white py-24">
+      <section id="booking" className="border-t border-[var(--line-strong)] bg-white py-20 sm:py-24">
         <div className="page-wrap">
-          <div className="mb-16 flex flex-col items-end justify-between gap-8 sm:flex-row sm:items-center">
-            <h3 className="text-4xl font-serif italic text-[var(--text)]">Reserve your stay.</h3>
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-[var(--line-strong)]">
+          <div className="mb-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <div className="space-y-3">
+              <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-primary">
+                <BedDouble className="size-4" />
+                Reservation desk
+              </span>
+              <h3 className="text-4xl font-serif italic leading-none text-[var(--text)] sm:text-5xl">Reserve your stay.</h3>
+              <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+                Refine your destination, choose your dates, and move straight into the most relevant stays.
+              </p>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line-strong)] text-primary">
               <Search size={16} />
             </div>
           </div>
           
-          <div className="grid gap-16 p-1 border-b border-[var(--line-strong)] pb-24 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="flex flex-col gap-3">
-              <label className="text-[11px] font-extrabold uppercase tracking-[0.3em] opacity-40">Destination</label>
-              <input 
+          <div className="grid gap-4 rounded-[1.75rem] border border-border/80 bg-background p-4 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.15fr)_repeat(3,minmax(0,0.8fr))_auto] lg:items-end">
+            <div className="space-y-2">
+              <Label htmlFor="destination" className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                <MapPin className="size-4 text-primary/80" />
+                Destination
+              </Label>
+              <Input
+                id="destination"
                 value={filters.destination}
                 onChange={(e) => setFilters({ ...filters, destination: e.target.value })}
-                placeholder="Where to?" 
-                className="w-full text-2xl"
+                placeholder="Where to?"
+                className="h-12 rounded-xl border-border/80 bg-background px-4 text-sm"
               />
             </div>
-            <div className="flex flex-col gap-3">
-              <label className="text-[11px] font-extrabold uppercase tracking-[0.3em] opacity-40">Check-in</label>
-              <input 
+            <div className="space-y-2">
+              <Label htmlFor="check-in" className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                <CalendarDays className="size-4 text-primary/80" />
+                Check-in
+              </Label>
+              <Input
+                id="check-in"
                 type="date"
                 value={filters.checkIn}
                 onChange={(e) => setFilters({ ...filters, checkIn: e.target.value })}
-                className="w-full"
+                className="h-12 rounded-xl border-border/80 bg-background px-4 text-sm"
               />
             </div>
-            <div className="flex flex-col gap-3">
-              <label className="text-[11px] font-extrabold uppercase tracking-[0.3em] opacity-40">Check-out</label>
-              <input 
+            <div className="space-y-2">
+              <Label htmlFor="check-out" className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                <CalendarDays className="size-4 text-primary/80" />
+                Check-out
+              </Label>
+              <Input
+                id="check-out"
                 type="date"
                 value={filters.checkOut}
                 onChange={(e) => setFilters({ ...filters, checkOut: e.target.value })}
-                className="w-full"
+                className="h-12 rounded-xl border-border/80 bg-background px-4 text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="guests" className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                <Users className="size-4 text-primary/80" />
+                Guests
+              </Label>
+              <Input
+                id="guests"
+                type="number"
+                min={1}
+                value={filters.guests}
+                onChange={(e) => setFilters({ ...filters, guests: Number(e.target.value) || 1 })}
+                className="h-12 rounded-xl border-border/80 bg-background px-4 text-sm"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="rooms" className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                <BedDouble className="size-4 text-primary/80" />
+                Rooms
+              </Label>
+              <Input
+                id="rooms"
+                type="number"
+                min={1}
+                value={filters.rooms}
+                onChange={(e) => setFilters({ ...filters, rooms: Number(e.target.value) || 1 })}
+                className="h-12 rounded-xl border-border/80 bg-background px-4 text-sm"
               />
             </div>
             <div className="flex items-end">
-              <button className="w-full bg-[var(--text)] py-5 text-white hover:bg-[var(--accent)] hover:border-[var(--accent)]">
-                Check Sanctuary
-              </button>
+              <Button className="h-12 w-full rounded-xl px-5 text-[11px] font-semibold uppercase tracking-[0.16em] lg:w-auto">
+                Check sanctuary
+                <Search className="size-4" />
+              </Button>
             </div>
           </div>
 
           {/* Results Grid - Lifestyle Simple */}
-          <div className="mt-32 grid gap-x-12 gap-y-24 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {hotels.map((hotel) => (
               <HotelCard
                 key={hotel.id}
